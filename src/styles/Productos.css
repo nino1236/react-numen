@@ -1,0 +1,17 @@
+
+.productos-lista {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;   
+  flex-wrap: wrap; 
+  list-style: none; 
+  padding: 0; 
+  margin-left: 50px;
+}
+
+.producto-item {
+  background: hsl(300, 1%, 28%); /* Ejemplo de fondo */
+  padding: 16px;
+  border-radius: 8px;
+  min-width: 200px; /* O el ancho que prefieras */
+}

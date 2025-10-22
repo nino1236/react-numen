@@ -1,19 +1,19 @@
-// Header.jsx
+
 import React from 'react';
 import '../styles/Header.css'; 
 import logo from '../assets/iconositio.png'
+import { Link } from "react-router-dom";
 
 
 function Header() {
   return (
     <header className="header">
-      <img src={logo} alt="Logo de la empresa" className="logo" />
-      <nav>
-        <ul className="nav-links">
-          <li><a href="/Home">Inicio</a></li>
-          <li><a href="/productost">Producto</a></li>
-          <li><a href="/carrito">Carrito</a></li>
-        </ul>
+      <img src={logo} alt="Logo" className="logo" />
+      <h1>MUNDO BATERIA</h1>
+      <nav className="nav-links">
+        <Link to="/" className="nav-link">INICIO</Link>
+        <Link to="/productos" className="nav-link">PRODUCTOS</Link>
+        <Link to="/carrito" className="nav-link">CARRITO</Link>
       </nav>
     </header>
   );

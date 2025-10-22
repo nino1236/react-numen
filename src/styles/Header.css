@@ -8,23 +8,29 @@
 }
 
 .logo {
-  height: 40px;
+  height: 80px;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 50px;
   margin: 0;
   padding: 0;
+  font-size: 1.2rem;
 }
 
 .nav-links a {
-  color: white;
+  color: #000000;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 1000;
 }
 
 .nav-links a:hover {
+  text-decoration: none;
+  color: #881616;
+}
+h1 {
+  color: #000000;
   text-decoration: underline;
 }
