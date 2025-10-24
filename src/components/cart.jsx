@@ -1,6 +1,8 @@
 
 import React from "react";
 import { useCart } from "../context/CartContext";
+import "../styles/cart.module.css"
+import "../styles/cart.css"
 
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
@@ -18,15 +20,20 @@ const Cart = () => {
         <ul>
           {cartItems.map(({ id, name, price, quantity }) => (
             <li key={id}>
-              {name} - ${price} x {quantity}
-              <button onClick={() => updateQuantity(id, quantity + 1)}>+</button>
-              <button onClick={() => updateQuantity(id, quantity - 1)} disabled={quantity === 1}>-</button>
-              <button onClick={() => removeFromCart(id)}>Eliminar</button>
+              {name} - ${price} x {quantity} = ${price * quantity}
+              <div className="botones-cart">
+              <button className="btn-sumar" onClick={() => updateQuantity(id, quantity + 1)}>+</button>
+              <button className="btn-restar" onClick={() => updateQuantity(id, quantity - 1)} disabled={quantity === 1}>-</button>
+              <button className="btn-eliminar" onClick={() => removeFromCart(id)}>Eliminar</button>
+              </div>
             </li>
           ))}
         </ul>
       )}
+
+      <div className="total">
       <h3>Total: ${totalPrice}</h3>
+      </div>
     </div>
   );
 };

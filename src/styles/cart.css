@@ -1,0 +1,56 @@
+.botones-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* 👈 este valor crea el espacio */
+  margin-bottom: 8px;}
+
+.btn-sumar {
+  background-color: rgb(8, 231, 8);
+  cursor: pointer;
+}
+
+.btn-restar {
+  background-color: rgb(255, 255, 0);
+  cursor: pointer;
+}
+
+.btn-eliminar {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+.btn-sumar:hover {
+  background-color: green;
+  transform: scale(1.05);
+}
+
+.btn-restar:hover {
+  background-color: rgb(148, 148, 5);
+  transform: scale(1.05);
+}
+
+.total{
+  padding: 5px 10px;
+  background-color: black; /* Fondo oscuro */
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}

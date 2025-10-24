@@ -1,46 +1,103 @@
-import React from 'react';
-import AddToCartButton from '../components/AddToCartButton';
-import { useCart } from '../context/CartContext';
-import '../styles/Productos.css';
+import React from "react";
+import { useCart } from "../context/CartContext";
+import AddToCartButton from "../components/AddToCartButton";
+import "../styles/Productos.css";
 
+import baquetascali from "../assets/baquetascalidad.png";
+import ensayo from "../assets/ensayo.png";
+import brillante from "../assets/brillante.jpg";
+import oscuro from "../assets/oscuro.png";
+import redonegro from "../assets/redonegro.jpeg";
+import redoplateado from "../assets/Redoplateadoo.png";
 
 function Productos() {
-const productos = [
-  { id: 1, name: 'Baquetas 1', price: 1500, descripcion: 'Baquetas de alta calidad' },
-  { id: 2, name: 'Baquetas 2', price: 2700, descripcion: 'Baquetas resistentes y balanceadas' },
-  { id: 3, name: 'Redoblante 1', price: 200, descripcion: 'Redoblante con gran resonancia' },
-  { id: 4, name: 'Redoblante 2', price: 200, descripcion: 'Ideal para ensayos y conciertos' },
-  { id: 5, name: 'Platillo 1', price: 200, descripcion: 'Platillo brillante de sonido agudo' },
-  { id: 6, name: 'Platillo 2', price: 200, descripcion: 'Platillo oscuro de sonido profundo' },
-];
+  
+  const productos = [
+    {
+      id: 1,
+      name: "Baquetas1",
+      price: 1500,
+      descripcion: "Baquetas de alta calidad para todo tipo de bateristas",
+      imagen: baquetascali,
+    },
+
+    {
+      id: 2,
+      name: "Baquetas2",
+      price: 2700,
+      descripcion: "Baquetas resistentes y balanceadas",
+      imagen: ensayo,
+    },
+
+    {
+      id: 3,
+      name: "Redoblante1",
+      price: 200,
+      descripcion: "Redoblante con cuerpo de acero y acabado negro.",
+      imagen: redonegro,
+    },
+    {
+      id: 4,
+      name: "Redoblante2",
+      price: 200,
+      descripcion: "Ideal para estudios y escenarios profesionales.",
+      imagen: redoplateado,
+    },
+
+        {
+      id: 5,
+      name: "Platillo1",
+      price: 200,
+      descripcion: "Platillo de sonido agudo y brillante.",
+      imagen: brillante,
+    },
+
+    {
+      id: 6,
+      name: "Platillo2",
+      price: 200,
+      descripcion: "Platillo oscuro de sonido más profundo y cálido.",
+      imagen: oscuro,
+    },
+    
+  ];
 
   const { cartItems, addToCart } = useCart();
 
   return (
-    <div>
-      <h1>Productos</h1>
-<ul className="productos-lista">
-  {productos.map(prod => (
-    <li className="producto-item" key={prod.id}>
-      <h3>{prod.name}</h3>
-      <p>Precio: ${prod.price}</p>
-        {prod.descripcion && <p className="descripcion">{prod.descripcion}</p>}
-    <AddToCartButton onAdd={() => addToCart(prod)} />
-    </li>
-  ))}
-</ul>
-      <h2>Carrito</h2>
-      {cartItems.length === 0 ? (
-        <p>El carrito está vacío</p>
-      ) : (
-        <ul>
-          {cartItems.map(({ id, name, price, quantity }) => (
-            <li key={id}>
-              {name} - ${price} x {quantity}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="productos-container">
+      <h1 className="titulo-principal">Productos</h1>
+
+      <ul className="productos-lista">
+        {productos.map((prod) => (
+          <li className="producto-item" key={prod.id}>
+            <img
+              src={prod.imagen}
+              alt={prod.name}
+              className="producto-imagen"
+            />
+            <h3>{prod.name}</h3>
+            <p className="descripcion">{prod.descripcion}</p>
+            <p className="precio">${prod.price}</p>
+            <AddToCartButton onAdd={() => addToCart(prod)} />
+          </li>
+        ))}
+      </ul>
+
+      <div className="carrito-resumen">
+        <h2>Carrito</h2>
+        {cartItems.length === 0 ? (
+          <p>El carrito está vacío</p>
+        ) : (
+          <ul>
+            {cartItems.map(({ id, name, price, quantity }) => (
+              <li key={id}>
+                {name} - ${price} x {quantity}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
