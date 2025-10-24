@@ -12,8 +12,14 @@
 
 .add-to-cart-button:hover {
   background-color: #218838;
+  transform: translateY(2px)
 }
 
+.add-to-cart-button:active{
+  transform: translateY(4px);
+  background-color: #1e7e34;
+  box-shadow: 0 2px 0 #155d27 inset;
+}
 .add-to-cart-button:disabled {
   background-color: #94d3a2;
   cursor: not-allowed;
