@@ -1,19 +1,33 @@
 
-import React from 'react';
-import '../styles/Header.css'; 
-import logo from '../assets/iconositio.png'
-import { Link } from "react-router-dom";
-
+import React, { useState } from 'react';
+import '../styles/Header.css';
+import logo from '../assets/iconositio.png';
+import { Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa'; // iconos menú
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header className="header">
-      <img src={logo} alt="Logo" className="logo" />
-      <h1>MUNDO BATERIA</h1>
-      <nav className="nav-links">
-        <Link to="/" className="nav-link">INICIO</Link>
-        <Link to="/productos" className="nav-link">PRODUCTOS</Link>
-        <Link to="/carrito" className="nav-link">CARRITO</Link>
+      <div className="logo-container">
+        <img src={logo} alt="Logo" className="logo" />
+        <h1 className="site-title">MUNDO BATERIA</h1>
+      </div>
+
+      {/* menú hamburguesa */}
+      <div className="menu-icon" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+      {/* Navegación */}
+      <nav className={`nav-links ${menuOpen ? 'active' : ''}`}>
+        <Link to="/" className="nav-link" onClick={closeMenu}>INICIO</Link>
+        <Link to="/productos" className="nav-link" onClick={closeMenu}>PRODUCTOS</Link>
+        <Link to="/carrito" className="nav-link" onClick={closeMenu}>CARRITO</Link>
       </nav>
     </header>
   );

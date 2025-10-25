@@ -50,7 +50,7 @@ function Productos() {
       price: 200,
       descripcion: "Platillo de sonido agudo y brillante.",
       imagen: brillante,
-    },
+        },
 
     {
       id: 6,

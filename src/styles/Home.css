@@ -1,30 +1,71 @@
-
 .home-container {
-  text-align: center;          /* Centra el contenido horizontalmente */
-  padding: 2rem;               /* Da espacio interno (margen interno) */
-  background-color: #FFFFFF;   /* Fondo blanco */
-  color: #0D0D0D;                 /* Color del texto */
-  font-family: Arial, sans-serif; /* Fuente legible */
-} 
-
-.home-container img {
-  width: 80%;                  /* Imagen ocupa 80% del ancho */
-  max-width: 600px;            /* Pero no más de 600px */
-  border-radius: 10px;         /* Esquinas suavemente redondeadas */
-  margin-top: 20px;            /* Espacio superior respecto al texto */
-  box-shadow: 0 4px 10px rgb(8, 59, 8); /* Sombra ligera debajo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .home-container h1 {
-  font-size: 2.5rem;           /* Tamaño grande del título */
-  color: #0D0D0D ;              /* Rojo oscuro */
+  font-size: 3rem;
+  color: #222;
+  margin-bottom: 1.5rem;
 }
 
 .home-container p {
-  font-size: 1.2rem;       /* Tamaño cómodo para leer */
-  line-height: 1.6;        /* Espacio entre líneas */
-  margin: 1rem 0;          /* Espacio arriba y abajo */
-  text-align: justify;     /* Hace que ocupe toda la línea horizontal */
-  width: 100%;    
-  color: #0D0D0D        /* Ocupa todo el ancho disponible */
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  width: 90%;
+}
+
+.home-image {
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* 💡 Animación ligera al hacer hover */
+.home-image:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* --- RESPONSIVIDAD --- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .home-container h1 {
+    font-size: 2.5rem;
+  }
+  .home-container p {
+    font-size: 1.1rem;
+  }
+  .home-image {
+    width: 90%;
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .home-container {
+    padding: 1.5rem;
+  }
+  .home-container h1 {
+    font-size: 2rem;
+  }
+  .home-container p {
+    font-size: 1rem;
+    width: 100%;
+  }
+  .home-image {
+    width: 100%;
+    max-width: 100%;
+  }
 }

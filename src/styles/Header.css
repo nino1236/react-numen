@@ -1,37 +1,104 @@
+/* CONTENEDOR PRINCIPAL */
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #329b36;
-  color: white;
-  padding: 15px 30px;
+  color: #fff;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LOGO + TÍTULO */
+.logo-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
 }
 
 .logo {
-  height: 80px;
+  width: 50px;
+  height: auto;
 }
 
+.site-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* LINKS DE NAVEGACIÓN */
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 50px;
-  margin: 0;
-  padding: 0;
-  font-size: 1.2rem;
+  gap: 2rem;
 }
 
-
-.nav-links a {
-  color: #000000;
+.nav-link {
   text-decoration: none;
-  font-weight: 1000;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
-  text-decoration: none;
-  color: #FFD60A;
+.nav-link:hover {
+  color: #ffcc00;
 }
-h1 {
-  color: #000000;
-  text-decoration: underline;
+
+/* Menú para pantallas móviles */
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* --- RESPONSIVIDAD --- */
+
+/* Tablets y teléfonos móviles */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    background-color: #329b36;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: right 0.4s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+  }
+
+  .logo {
+    width: 45px;
+  }
+
+  .site-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* Para pantallas pequeñas (menos de 400px) */
+@media (max-width: 400px) {
+  .site-title {
+    display: none; /* si el título no entra */
+  }
+
+  .logo {
+    width: 40px;
+  }
 }

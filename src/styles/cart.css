@@ -1,56 +1,170 @@
-.botones-cart {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.cart-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-li {
+
+.cart-title {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.cart-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px; /* 👈 este valor crea el espacio */
-  margin-bottom: 8px;}
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* 🔹 Permite que los botones bajen en pantallas chicas */
+}
+
+.cart-info {
+  text-align: left;
+  flex: 1;
+}
+
+.cart-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.cart-details {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* 🔘 BOTONES */
+.botones-cart {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+.btn-sumar,
+.btn-restar,
+.btn-eliminar {
+  border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transform: scale(1);
+  
+}
 
 .btn-sumar {
-  background-color: rgb(8, 231, 8);
-  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  
 }
 
 .btn-restar {
-  background-color: rgb(255, 255, 0);
-  cursor: pointer;
+  background-color: #ff9800;
+  color: white;
 }
 
 .btn-eliminar {
-  background-color: red;
+  background-color: #e53935;
   color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  transition: all 0.2s ease;
-}
-
-.btn-eliminar:hover {
-  background-color: #c0392b;
-  transform: scale(1.05);
 }
 
 .btn-sumar:hover {
-  background-color: green;
-  transform: scale(1.05);
+  background-color: #45a049;
 }
 
 .btn-restar:hover {
-  background-color: rgb(148, 148, 5);
-  transform: scale(1.05);
+  background-color: #fb8c00;
 }
 
-.total{
-  padding: 5px 10px;
-  background-color: black; /* Fondo oscuro */
-  color: #fff;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+.btn-eliminar:hover {
+  background-color: #d32f2f;
+}
+
+.btn-sumar:active,
+.btn-restar:active,
+.btn-eliminar:active {
+  transform: scale(0.92); /* efecto de “presionar” */
+  filter: brightness(0.9); /* leve oscurecimiento */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset; /* leve profundidad */
+}
+
+/* 🔹 Estado deshabilitado */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.total {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* 📱 --- RESPONSIVIDAD --- */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 1.5rem;
+  }
+
+  .cart-title {
+    font-size: 1.7rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .cart-info {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .botones-cart {
+    justify-content: center;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .cart-container {
+    padding: 1rem;
+  }
+
+  .cart-title {
+    font-size: 1.4rem;
+  }
+
+  .btn-sumar,
+  .btn-restar,
+  .btn-eliminar {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+  }
 }
