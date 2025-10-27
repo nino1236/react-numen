@@ -1,6 +1,8 @@
 
 import React from "react";
 import { useCart } from "../context/CartContext";
+import "../styles/cart.module.css"
+import "../styles/cart.css"
 
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
@@ -10,23 +12,51 @@ const Cart = () => {
   );
 
   return (
-    <div>
-      <h2>Carrito de Compras</h2>
+    <div className="cart-container">
+      <h2 className="cart-title">Carrito de Compras</h2>
+
       {cartItems.length === 0 ? (
-        <p>El carrito está vacío</p>
+        <p className="empty-cart">El carrito está vacío</p>
       ) : (
-        <ul>
+        <ul className="cart-list">
           {cartItems.map(({ id, name, price, quantity }) => (
-            <li key={id}>
-              {name} - ${price} x {quantity}
-              <button onClick={() => updateQuantity(id, quantity + 1)}>+</button>
-              <button onClick={() => updateQuantity(id, quantity - 1)} disabled={quantity === 1}>-</button>
-              <button onClick={() => removeFromCart(id)}>Eliminar</button>
+            <li key={id} className="cart-item">
+              <div className="cart-info">
+                <p className="cart-name">{name}</p>
+                <p className="cart-details">
+                  ${price} x {quantity} = <strong>${price * quantity}</strong>
+                </p>
+              </div>
+
+              <div className="botones-cart">
+                <button
+                  className="btn-sumar"
+                  onClick={() => updateQuantity(id, quantity + 1)}
+                >
+                  +
+                </button>
+                <button
+                  className="btn-restar"
+                  onClick={() => updateQuantity(id, quantity - 1)}
+                  disabled={quantity === 1}
+                >
+                  -
+                </button>
+                <button
+                  className="btn-eliminar"
+                  onClick={() => removeFromCart(id)}
+                >
+                  Eliminar
+                </button>
+              </div>
             </li>
           ))}
         </ul>
       )}
-      <h3>Total: ${totalPrice}</h3>
+
+      <div className="total">
+        <h3>Total: ${totalPrice}</h3>
+      </div>
     </div>
   );
 };
