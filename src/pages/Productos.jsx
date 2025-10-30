@@ -84,20 +84,7 @@ function Productos() {
         ))}
       </ul>
 
-      <div className="carrito-resumen">
-        <h2>Carrito</h2>
-        {cartItems.length === 0 ? (
-          <p>El carrito está vacío</p>
-        ) : (
-          <ul>
-            {cartItems.map(({ id, name, price, quantity }) => (
-              <li key={id}>
-                {name} - ${price} x {quantity}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      
     </div>
   );
 }

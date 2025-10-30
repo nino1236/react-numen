@@ -1,4 +1,4 @@
-/* CONTENEDOR PRINCIPAL */
+/* === CONTENEDOR PRINCIPAL === */ 
 .header {
   display: flex;
   justify-content: space-between;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-/* LOGO + TÍTULO */
+/* === LOGO + TÍTULO === */
 .logo-container {
   display: flex;
   align-items: center;
@@ -29,9 +29,10 @@
   letter-spacing: 1px;
 }
 
-/* LINKS DE NAVEGACIÓN */
+/* === LINKS DE NAVEGACIÓN === */
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -46,7 +47,39 @@
   color: #ffcc00;
 }
 
-/* Menú para pantallas móviles */
+/* ICONO DEL CARRITO (imagen) */
+.cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon img {
+  width: 28px;      /* Tamaño del carrito en escritorio */
+  height: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Mantiene el ícono blanco sobre fondo verde */
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #ffcc00;
+  color: #329b36;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === ICONO MENÚ HAMBURGUESA === */
 .menu-icon {
   display: none;
   font-size: 1.8rem;
@@ -55,7 +88,7 @@
 
 /* --- RESPONSIVIDAD --- */
 
-/* Tablets y teléfonos móviles */
+/* === Tablets y teléfonos móviles === */
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
@@ -83,6 +116,20 @@
     font-size: 1.5rem;
   }
 
+  /* 🔹 Carrito más chico en pantallas pequeñas */
+  .cart-icon img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-count {
+    top: -5px;
+    right: -8px;
+    width: 16px;
+    height: 16px;
+    font-size: 11px;
+  }
+
   .logo {
     width: 45px;
   }
@@ -92,13 +139,18 @@
   }
 }
 
-/* Para pantallas pequeñas (menos de 400px) */
+/* === Para pantallas pequeñas (menos de 400px) === */
 @media (max-width: 400px) {
   .site-title {
-    display: none; /* si el título no entra */
+    display: none; /* Oculta el título si no entra */
   }
 
   .logo {
     width: 40px;
+  }
+
+  .cart-icon img {
+    width: 22px;
+    height: 22px;
   }
 }

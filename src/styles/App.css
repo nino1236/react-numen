@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+html, body {
+  overflow-x: hidden;  /* Evita que algo que sobresale genere scroll horizontal */
+}
+
 
 .App {
   display: flex;

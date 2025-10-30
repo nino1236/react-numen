@@ -16,6 +16,7 @@ Explorá nuestro catálogo, armá tu set ideal y llevá tu pasión por la bater�
   <img 
         src={homeImage} 
         alt="manos con baquetas"
+        class name="home-image"
       />
     </main>
   );
