@@ -32,14 +32,14 @@ function Productos() {
     {
       id: 3,
       name: "Redoblante1",
-      price: 200,
+      price: 2890,
       descripcion: "Redoblante con cuerpo de acero y acabado negro.",
       imagen: redonegro,
     },
     {
       id: 4,
       name: "Redoblante2",
-      price: 200,
+      price: 3400,
       descripcion: "Ideal para estudios y escenarios profesionales.",
       imagen: redoplateado,
     },
@@ -47,7 +47,7 @@ function Productos() {
         {
       id: 5,
       name: "Platillo1",
-      price: 200,
+      price: 5100,
       descripcion: "Platillo de sonido agudo y brillante.",
       imagen: brillante,
         },
@@ -55,7 +55,7 @@ function Productos() {
     {
       id: 6,
       name: "Platillo2",
-      price: 200,
+      price: 4850,
       descripcion: "Platillo oscuro de sonido más profundo y cálido.",
       imagen: oscuro,
     },
