@@ -1,0 +1,69 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Baquetas1",
+      "price": 1500,
+      "descripcion": "Baquetas de alta calidad para todo tipo de bateristas",
+      "imagen": "/baquetascalidad.png"
+    },
+    {
+      "id": 2,
+      "name": "Baquetas2",
+      "price": 2700,
+      "descripcion": "Baquetas resistentes y balanceadas",
+      "imagen": "/ensayo.png"
+    },
+    {
+      "id": 3,
+      "name": "Redoblante1",
+      "price": 2890,
+      "descripcion": "Redoblante con cuerpo de acero y acabado negro.",
+      "imagen": "/redonegro.jpeg"
+    },
+    {
+      "id": 4,
+      "name": "Redoblante2",
+      "price": 3400,
+      "descripcion": "Ideal para estudios y escenarios profesionales.",
+      "imagen": "/Redoplateadoo.png"
+    },
+    {
+      "id": 5,
+      "name": "Platillo1",
+      "price": 5100,
+      "descripcion": "Platillo de sonido agudo y brillante.",
+      "imagen": "/brillante.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Platillo2",
+      "price": 4850,
+      "descripcion": "Platillo oscuro de sonido más profundo y cálido.",
+      "imagen": "/oscuro.png"
+    }
+  ],
+  "cart": [
+    {
+      "id": "3176",
+      "productId": 6,
+      "name": "Platillo2",
+      "price": 4850,
+      "quantity": 1
+    },
+    {
+      "id": "540e",
+      "productId": 3,
+      "name": "Redoblante1",
+      "price": 2890,
+      "quantity": 1
+    },
+    {
+      "id": "c6ea",
+      "productId": 5,
+      "name": "Platillo1",
+      "price": 5100,
+      "quantity": 5
+    }
+  ]
+}

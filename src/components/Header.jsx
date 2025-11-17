@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import '../styles/Header.css';
-import logo from '../assets/iconositio.png';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa'; // 
 import { FaShoppingCart } from "react-icons/fa";
@@ -19,7 +18,7 @@ function Header() {
   return (
     <header className="header">
       <div className="logo-container">
-        <img src={logo} alt="Logo" className="logo" />
+        <img src="/iconositio.png" alt="Logo" className="logo" />
         <h1 className="site-title">MUNDO BATERIA</h1>
       </div>
 
