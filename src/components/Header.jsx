@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import '../styles/Header.css';
 import logo from '../assets/iconositio.png';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa'; // 
+import { FaBars, FaTimes } from 'react-icons/fa'; 
 import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 
