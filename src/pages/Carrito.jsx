@@ -8,7 +8,6 @@ import styles from '../styles/cart.module.css';
 function Carrito() {
   return (
     <div>
-      <h1><FaShoppingCart size={22} /></h1>
       <Cart />
     </div>
   );

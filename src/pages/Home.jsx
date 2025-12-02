@@ -2,7 +2,6 @@ import Header from '../components/Header';
 import Footer from '../components/footer';
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import '../styles/Home.css';
-import homeImage from '../assets/home.webp';
 
 
 function Home() {
@@ -14,7 +13,7 @@ Somos una tienda especializada en baterías acústicas, electrónicas y todos su
 Trabajamos con productos de alta calidad para músicos de todos los niveles —desde principiantes hasta profesionales— brindándote sonido, durabilidad y estilo en cada golpe.
 Explorá nuestro catálogo, armá tu set ideal y llevá tu pasión por la batería al siguiente nivel. </p>
   <img 
-        src={homeImage} 
+        src="/home.webp"
         alt="manos con baquetas"
         class name="home-image"
       />

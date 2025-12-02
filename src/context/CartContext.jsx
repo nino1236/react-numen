@@ -1,80 +1,94 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const CartContext = createContext();
-
-export function useCart() {
-  return useContext(CartContext);
-}
+export const useCart = () => useContext(CartContext);
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Cargar carrito desde servidor al montar
+  const API_URL = "http://localhost:3000/cart";
+
+  // Cargar carrito desde API
   useEffect(() => {
-    async function fetchCart() {
-      try {
-        const res = await fetch("/api/cart");
-        if (res.ok) {
-          const data = await res.json();
-          setCartItems(data);
-        }
-      } catch (error) {
-        console.error("Error cargando carrito:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchCart();
+    axios
+      .get(API_URL)
+      .then((res) => setCartItems(res.data))
+      .catch((err) => console.error("Error cargando carrito:", err));
   }, []);
 
-  // Guardar carrito en servidor cuando cambie (excepto en loading)
-  useEffect(() => {
-    if (loading) return;
-    async function saveCart() {
-      try {
-        await fetch("/api/cart", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(cartItems),
-        });
-      } catch (error) {
-        console.error("Error guardando carrito:", error);
-      }
-    }
-    saveCart();
-  }, [cartItems, loading]);
+  // Agregar al carrito
+  const addToCart = async (product) => {
+    try {
+      // Buscar si ya existe en el carrito usando productId
+      const existing = cartItems.find((item) => item.productId === product.id);
 
-  // Funciones para modificar carrito
-  const addToCart = (product) => {
-    setCartItems((items) => {
-      const existing = items.find((item) => item.id === product.id);
       if (existing) {
-        return items.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        // Aumentar cantidad
+        const updated = { ...existing, quantity: existing.quantity + 1 };
+        await axios.put(`${API_URL}/${existing.id}`, updated);
+
+        setCartItems((items) =>
+          items.map((i) => (i.id === existing.id ? updated : i))
         );
+      } else {
+        // Crear un nuevo item
+        const newItem = {
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+        };
+
+        const res = await axios.post(API_URL, newItem);
+
+        setCartItems((items) => [...items, res.data]);
       }
-      return [...items, { ...product, quantity: 1 }];
-    });
+    } catch (err) {
+      console.error("Error agregando:", err);
+    }
   };
 
-  const removeFromCart = (id) => {
-    setCartItems((items) => items.filter((item) => item.id !== id));
+  // Eliminar del carrito
+  const removeFromCart = async (id) => {
+    try {
+      await axios.delete(`${API_URL}/${id}`);
+      setCartItems((items) => items.filter((i) => i.id !== id));
+    } catch (err) {
+      console.error("Error eliminando:", err);
+    }
   };
 
-  const updateQuantity = (id, quantity) => {
-    setCartItems((items) =>
-      items.map((item) => (item.id === id ? { ...item, quantity } : item))
-    );
+  // Actualizar cantidad
+  const updateQuantity = async (id, quantity) => {
+    try {
+      const existing = cartItems.find((i) => i.id === id);
+      const updated = { ...existing, quantity };
+
+      await axios.put(`${API_URL}/${id}`, updated);
+
+      setCartItems((items) =>
+        items.map((i) => (i.id === id ? updated : i))
+      );
+    } catch (err) {
+      console.error("Error actualizando cantidad:", err);
+    }
   };
 
-  const clearCart = () => {
-    setCartItems([]);
+  const clearCart = async () => {
+    try {
+      for (const item of cartItems) {
+        await axios.delete(`${API_URL}/${item.id}`);
+      }
+      setCartItems([]);
+    } catch (err) {
+      console.error("Error vaciando carrito:", err);
+    }
   };
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, loading }}
+      value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, }}
     >
       {children}
     </CartContext.Provider>
