@@ -1,12 +1,11 @@
 
 import React from "react";
 import { useCart } from "../context/CartContext";
-import "../styles/cart.css"
-
-
+import "../styles/cart.css";
 
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
+
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -20,8 +19,8 @@ const Cart = () => {
         <p className="empty-cart">El carrito está vacío</p>
       ) : (
         <ul className="cart-list">
-          {cartItems.map(({ id, name, price, quantity }) => (
-            <li key={id} className="cart-item">
+          {cartItems.map(({ _id, name, price, quantity }) => (
+            <li key={_id} className="cart-item">
               <div className="cart-info">
                 <p className="cart-name">{name}</p>
                 <p className="cart-details">
@@ -32,20 +31,20 @@ const Cart = () => {
               <div className="botones-cart">
                 <button
                   className="btn-sumar"
-                  onClick={() => updateQuantity(id, quantity + 1)}
+                  onClick={() => updateQuantity(_id, quantity + 1)}
                 >
                   +
                 </button>
                 <button
                   className="btn-restar"
-                  onClick={() => updateQuantity(id, quantity - 1)}
+                  onClick={() => updateQuantity(_id, quantity - 1)}
                   disabled={quantity === 1}
                 >
                   -
                 </button>
                 <button
                   className="btn-eliminar"
-                  onClick={() => removeFromCart(id)}
+                  onClick={() => removeFromCart(_id)}
                 >
                   Eliminar
                 </button>

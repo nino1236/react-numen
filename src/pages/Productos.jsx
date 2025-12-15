@@ -9,9 +9,13 @@ function Productos() {
   const { addToCart } = useCart();
 
   useEffect(() => {
+    // Llamada a tu API (usa proxy de Vite o URL completa si no hay proxy)
     axios
       .get("http://localhost:3000/products")
-      .then((res) => setProductos(res.data))
+      .then((res) => {
+        console.log("PRODUCTOS recibidos:", res.data)
+        setProductos(res.data);
+      })
       .catch((err) => console.error("Error cargando productos:", err));
   }, []);
 
@@ -19,21 +23,25 @@ function Productos() {
     <div className="productos-container">
       <h1 className="titulo-principal">Productos</h1>
 
-      <ul className="productos-lista">
-        {productos.map((prod) => (
-          <li className="producto-item" key={prod.id}>
-            <img
-              src={prod.imagen}
-              alt={prod.name}
-              className="producto-imagen"
-            />
-            <h3>{prod.name}</h3>
-            <p className="descripcion">{prod.descripcion}</p>
-            <p className="precio">${prod.price}</p>
-            <AddToCartButton onAdd={() => addToCart(prod)} />
-          </li>
-        ))}
-      </ul>
+      {productos.length === 0 ? (
+        <p>No hay productos disponibles</p>
+      ) : (
+        <ul className="productos-lista">
+          {productos.map((prod) => (
+            <li className="producto-item" key={prod._id}>
+              <img
+                src={prod.imagen} 
+                alt={prod.name} 
+                className="producto-imagen"
+              />
+              <h3>{prod.name}</h3>
+              <p className="descripcion">{prod.descripcion}</p>
+              <p className="precio">${prod.price}</p>
+              <AddToCartButton onAdd={() => addToCart(prod)} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

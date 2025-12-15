@@ -56,13 +56,6 @@
       "productId": 3,
       "name": "Redoblante1",
       "price": 2890,
-      "quantity": 1
-    },
-    {
-      "id": "c6ea",
-      "productId": 5,
-      "name": "Platillo1",
-      "price": 5100,
       "quantity": 5
     }
   ]

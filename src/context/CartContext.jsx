@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 const CartContext = createContext();
@@ -7,78 +7,75 @@ export const useCart = () => useContext(CartContext);
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
-  const API_URL = "http://localhost:3000/cart";
+  const API_CART = "http://localhost:3000/cart"; // URL completa del carrito
 
-  // Cargar carrito desde API
+  // Cargar carrito al iniciar la app
   useEffect(() => {
     axios
-      .get(API_URL)
-      .then((res) => setCartItems(res.data))
+      .get(API_CART)
+      .then((res) => {
+        console.log("CARRITO recibido:", res.data);
+        setCartItems(res.data);
+      })
       .catch((err) => console.error("Error cargando carrito:", err));
   }, []);
 
-  // Agregar al carrito
+  // Agregar producto al carrito
   const addToCart = async (product) => {
     try {
-      // Buscar si ya existe en el carrito usando productId
-      const existing = cartItems.find((item) => item.productId === product.id);
+      const existing = cartItems.find((item) => item.productId === product._id);
 
       if (existing) {
-        // Aumentar cantidad
-        const updated = { ...existing, quantity: existing.quantity + 1 };
-        await axios.put(`${API_URL}/${existing.id}`, updated);
+        const res = await axios.put(`${API_CART}/${existing._id}`, {
+          quantity: existing.quantity + 1,
+        });
 
         setCartItems((items) =>
-          items.map((i) => (i.id === existing.id ? updated : i))
+          items.map((i) => (i._id === existing._id ? res.data : i))
         );
       } else {
-        // Crear un nuevo item
-        const newItem = {
-          productId: product.id,
+        const res = await axios.post(API_CART, {
+          productId: product._id,
           name: product.name,
           price: product.price,
           quantity: 1,
-        };
-
-        const res = await axios.post(API_URL, newItem);
+        });
 
         setCartItems((items) => [...items, res.data]);
       }
     } catch (err) {
-      console.error("Error agregando:", err);
+      console.error("Error agregando al carrito:", err);
     }
   };
 
-  // Eliminar del carrito
-  const removeFromCart = async (id) => {
+  // Eliminar item
+  const removeFromCart = async (_id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
-      setCartItems((items) => items.filter((i) => i.id !== id));
+      await axios.delete(`${API_CART}/${_id}`);
+      setCartItems((items) => items.filter((i) => i._id !== _id));
     } catch (err) {
-      console.error("Error eliminando:", err);
+      console.error("Error eliminando del carrito:", err);
     }
   };
 
   // Actualizar cantidad
-  const updateQuantity = async (id, quantity) => {
+  const updateQuantity = async (_id, quantity) => {
+    if (quantity < 1) return;
     try {
-      const existing = cartItems.find((i) => i.id === id);
-      const updated = { ...existing, quantity };
-
-      await axios.put(`${API_URL}/${id}`, updated);
-
+      const res = await axios.put(`${API_CART}/${_id}`, { quantity });
       setCartItems((items) =>
-        items.map((i) => (i.id === id ? updated : i))
+        items.map((i) => (i._id === _id ? res.data : i))
       );
     } catch (err) {
       console.error("Error actualizando cantidad:", err);
     }
   };
 
+  // Vaciar carrito
   const clearCart = async () => {
     try {
       for (const item of cartItems) {
-        await axios.delete(`${API_URL}/${item.id}`);
+        await axios.delete(`${API_CART}/${item._id}`);
       }
       setCartItems([]);
     } catch (err) {
@@ -88,7 +85,13 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>
