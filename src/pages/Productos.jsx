@@ -11,7 +11,7 @@ function Productos() {
   useEffect(() => {
     // Llamada a tu API (usa proxy de Vite o URL completa si no hay proxy)
     axios
-      .get("http://localhost:3000/products")
+      .get("http://localhost:3000/api/products")
       .then((res) => {
         console.log("PRODUCTOS recibidos:", res.data)
         setProductos(res.data);

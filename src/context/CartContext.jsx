@@ -7,7 +7,7 @@ export const useCart = () => useContext(CartContext);
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
-  const API_CART = "http://localhost:3000/cart"; // URL completa del carrito
+  const API_CART = "http://localhost:3000/api/cart"; // URL completa del carrito
 
   // Cargar carrito al iniciar la app
   useEffect(() => {
