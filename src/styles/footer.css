@@ -1,15 +1,19 @@
-.footer {
-  background-color: #329b36;
-  color: #fff;
+footer {
+  background-color: #1c1c1c;
+  color: #e0e0e0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* permite que los elementos se acomoden en varias filas */
+  flex-wrap: wrap;
+
   padding: 1.5rem 2rem;
   text-align: center;
+
+  border-top: 2px solid #ff6a00;
 }
 
-/* DATOS DE CONTACTO */
+/* === DATOS DE CONTACTO === */
 .datos {
   list-style: none;
   padding: 0;
@@ -22,27 +26,27 @@
   letter-spacing: 0.5px;
 }
 
-/* ICONOS REDES SOCIALES */
+/* === REDES SOCIALES === */
 .social-icons {
   display: flex;
   gap: 1.5rem;
 }
 
 .icon-link {
-  color: #fff;
+  color: #e0e0e0;
   transition: color 0.3s, transform 0.3s;
 }
 
 .icon-link:hover {
-  color: #ffcc00;
+  color: #ff6a00;
   transform: scale(1.2);
 }
 
-/* 📱 --- RESPONSIVIDAD --- */
+/* --- RESPONSIVIDAD --- */
 
 /* Tablets */
 @media (max-width: 992px) {
-  .footer {
+  footer {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
@@ -55,7 +59,7 @@
 
 /* Celulares */
 @media (max-width: 600px) {
-  .footer {
+  footer {
     padding: 1.2rem;
   }
 
