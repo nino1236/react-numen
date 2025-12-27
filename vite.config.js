@@ -10,4 +10,11 @@ export default defineConfig({
       },
     }),
   ],
+  // Si necesitás proxy para backend en dev, descomenta y configura:
+  // server: {
+  //   proxy: {
+  //     "/products": "http://localhost:3000",
+  //     "/cart": "http://localhost:3000",
+  //   },
+  // },
 })
